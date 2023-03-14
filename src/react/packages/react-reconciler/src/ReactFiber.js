@@ -421,6 +421,7 @@ export function createWorkInProgress(
     workInProgress.treeBaseDuration = current.treeBaseDuration;
   }
 
+  console.log('workInProgress: ', workInProgress);
   return workInProgress;
 }
 

@@ -544,6 +544,11 @@ function legacyRenderSubtreeIntoContainer(
   forceHydrate: boolean,
   callback: ?Function,
 ) {
+
+  console.log('parentComponent: ', parentComponent);
+  console.log('children: ', children);
+
+
   if (__DEV__) {
     topLevelUpdateWarnings(container);
   }
@@ -557,6 +562,8 @@ function legacyRenderSubtreeIntoContainer(
       container,
       forceHydrate,
     );
+    console.log('root: ', root);
+
     if (typeof callback === 'function') {
       const originalCallback = callback;
       callback = function() {
