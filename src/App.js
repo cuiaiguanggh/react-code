@@ -4,6 +4,8 @@ import React, {
   useCallback,
   useEffect,
   useRef,
+  componentDidMount,
+  memo,
 } from "react";
 // import LifeCycles from './LifeCycles'
 // import HookComponents from './Hook'
@@ -23,7 +25,20 @@ function useFunctionHook(age, name) {
     _console,
   };
 }
-function FunctionHook(props) {
+const FunctionHook0 = memo(() => {
+  useEffect(() => {
+    // console.log("FunctionHook0 useEffect");
+  }, []);
+  useEffect(() => {
+    // console.log("FunctionHook0 useEffect");
+  }, []);
+
+  return "";
+
+  // return <div id="function-hook" style={{ paddingLeft: 10 }}></div>;
+});
+
+function FunctionHook1(props) {
   // console.log("props: ", props);
 
   const [name, set_name] = useState("张三");
@@ -35,14 +50,22 @@ function FunctionHook(props) {
     console.log("my age is :" + age);
   });
 
-  if (age >= 13) {
-    const [sex, setSex] = useState("男");
-  }
+  // if (age >= 13) {
+  //   const [sex, setSex] = useState("男");
+  // }
 
   // useEffect(() => {
   //   set_age(age + 1);
   //   set_name("张三三");
   // }, []);
+
+  useEffect(() => {
+    console.log("age更新", age);
+  }, [age]);
+
+  useEffect(() => {
+    console.log("name更新", name);
+  }, [name]);
 
   const { _console } = useFunctionHook(age, name);
 
@@ -57,17 +80,25 @@ function FunctionHook(props) {
     </div>
   );
 }
-
 export default class App extends React.Component {
   constructor() {
     super();
   }
 
+  state = {
+    name: "app-class-state-name",
+  };
+
+  componentDidMount() {}
   render() {
     return (
       <div className="app-container">
-        {<FunctionHook key="my-hook-fun" />}
-        <Hook key={"hook-fun"} />
+        {/* <FunctionHook0 key="fun-hook-0" name="test" /> */}
+        <FunctionHook0 />
+
+        {/* <FunctionHook1 key="fun-hook-1" /> */}
+
+        {/* <Hook key={"hook-fun"} /> */}
         {/* {FunctionHook()} */}
       </div>
     );
